@@ -5,11 +5,16 @@ on:
     types: [trigger-second-workflow]
 
 jobs:
-  trigger-next:
+  print-message:
     runs-on: ubuntu-latest
     steps:
       - name: Print Message
         run: echo "Running Second Workflow"
+
+  trigger-third-workflow:
+    needs: print-message
+    runs-on: ubuntu-latest
+    steps:
       - name: Trigger Third Workflow
         uses: peter-evans/repository-dispatch@v1
         with:
