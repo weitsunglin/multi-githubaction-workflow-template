@@ -6,11 +6,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  trigger-next:
+  print-message:
     runs-on: ubuntu-latest
     steps:
       - name: Print Message
         run: echo "Running First Workflow"
+
+  trigger-next-workflow:
+    needs: print-message
+    runs-on: ubuntu-latest
+    steps:
       - name: Trigger Second Workflow
         uses: peter-evans/repository-dispatch@v1
         with:
